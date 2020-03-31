@@ -14,9 +14,14 @@
     <p>The system analyze the content of the page, extract keywords and understand meaning. After that, it uses various sources to detect whether it is hoax.</p>
     <h2>Options</h2>
     <form id="options">
-      <input type="checkbox" name="isActivated" checked style="display:none;">
+      <input type="checkbox" name="isActivated" checked style="display:none;"><br>
     Show notification when hoax or fake news detected:
       <select name="showNotif">       
+        <option>No</option>
+        <option>Yes</option>
+      </select><br><br>
+    Auto-detect hoax or fake news (if set to "No", manually click extension icon):
+      <select name="autoDetect">       
         <option>No</option>
         <option>Yes</option>
       </select>

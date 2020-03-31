@@ -10,14 +10,15 @@ function ghost(isDeactivated) {
   options.style.color = isDeactivated ? 'graytext' : 'black';
                                               // The label color.
   options.showNotif.disabled = isDeactivated; // The control manipulability.
+  options.autoDetect.disabled = isDeactivated;
 }
 
 window.addEventListener('load', function() {
   // Initialize the option controls.
-  options.isActivated.checked = JSON.parse(localStorage.isActivated);
-                                         // The display activation.
-  options.showNotif.value = localStorage.showNotif === "true" ? "Yes":"No";
-                                         // The notification flag
+  options.isActivated.checked = JSON.parse(localStorage.isActivated); // The display activation.                                   
+  options.showNotif.value = localStorage.showNotif === "true" ? "Yes":"No"; // The notification flag
+  options.autoDetect.value = localStorage.autoDetect === "true" ? "Yes":"No"; // The autoDetect flag
+                                         
 
   if (!options.isActivated.checked) { ghost(true); }
 
@@ -29,5 +30,8 @@ window.addEventListener('load', function() {
 
   options.showNotif.onchange = function() {
     localStorage.showNotif = options.showNotif.value == "No" ? false : true;
+  };
+  options.autoDetect.onchange = function() {
+    localStorage.autoDetect = options.autoDetect.value == "No" ? false : true;
   };
 });

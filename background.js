@@ -3,36 +3,40 @@
 if (!localStorage.isInitialized) {
   localStorage.isActivated = true;   // The display activation.
   localStorage.showNotif = true;        // The notification setting
+  localStorage.autoDetect = true;        // The autoDetect setting
   localStorage.isInitialized = true; // The option initialization.
 }
 
 chrome.runtime.onMessage.addListener(
   function (message, sender, sendResponse) {
-    console.log(message);
-    if (message){
-      show(message.title, message.link, message.fake, message.url)
-      // Content script, storage (remember document title?)
-      obj = {}
-      tab = sender.tab.id
-      obj[tab.toString()] = [message.fake, message.title, message.link]
-      chrome.storage.local.set(obj);
-    }   
-  });
+    var tabId = sender.tab.id;    
 
+    if (message.init){
+      if (localStorage.autoDetect === "true"){
+        chrome.tabs.sendMessage(tabId, "start");
+      }else{
+        chrome.pageAction.setTitle({ title: "Click to analyze page content", tabId: tabId });
+        chrome.pageAction.show(tabId);     
+      }
+
+    }else if(message.url){
+      obj = {}
+      obj[message.url] = [message.fake, message.title, message.link, tabId]
+      chrome.storage.local.set(obj);
+      show(message.title, message.link, message.fake, message.url, tabId)    
+    }
+  });
 
 var tempDb = []
 
-function show(title, link, fake, url) {
+function show(title, link, fake, url, tabId) {
 
   // Get tabID
-  chrome.tabs.query({
-    active: true,               // Select active tabs
-    lastFocusedWindow: true     // In the current window
-  }, function (array_of_Tabs) {
-    var tab = array_of_Tabs[0];
-    var tabId = tab.id;
-
-    // Start the score Logic
+  // chrome.tabs.query({
+  //   active: true,               // Select active tabs
+  //   lastFocusedWindow: true     // In the current window
+  // }, function (tabArray) {
+  //   var tabId = tabArray[0].id;
 
     if (!fake) {
 
@@ -47,7 +51,7 @@ function show(title, link, fake, url) {
       // make icon active
       chrome.pageAction.show(tabId);
 
-    } else {
+    } else{
 
         // Change the icon to bad
         chrome.pageAction.setIcon({
@@ -63,12 +67,17 @@ function show(title, link, fake, url) {
 
         if ( localStorage.showNotif === "true" && tempDb.includes(url) === false) {
 
-          new Notification("Please fact check this site", {
+          notification= new Notification("Please fact check this site", {
             icon: 'img/48.png',
             body: "Hoax or fake news detected based on content of this web page."
           });
+          notification.addEventListener('click', function(e) {
+            chrome.tabs.update(tabId, {selected: true});
+            e.target.close();
+          }, false);
           tempDb.push(url)
         }
     }
-  });
+   
+ // });
 }

@@ -16,9 +16,9 @@
    "name": "Hoax Detector",
    "options_page": "options.html",
    "page_action": {
-      "default_icon": "img/16.png",
+      "default_icon": "img/medium.png",
       "default_popup": "popup.html",
-      "default_title": "Analyzing page content for hoax"
+      "default_title": "Analyzing page content..."
    },
    "permissions": [ "tabs", "notifications", "storage" ],
    "version": "0.1",
