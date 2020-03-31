@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Hoax Detector Popup</title>
+
+    <!-- Bootstrap core CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script src="./jquery.min.js"></script>
+  <script src="./popup.js"></script>
+
+    <!-- Custom styles for this template -->
+    <link href="./popup.css" rel="stylesheet">
+
+<style type="text/css" >
+</style>
+
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand"><span>Hoax Detector</span></a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container"  style="margin-bottom: 15px;">
+		<div class="row">
+			<div class="col-sm-3">
+				<div class="rating-block center-block">
+          <img id="iconscore" style="float:left;margin:10px 10px 0px 0px" src="img/medium.png"/>
+					<h2 id="scored" style="margin-top: 25px;margin-bottom: 10px; font-size:20px"class="bold"> <span>Processing...</span> <br><small>Detected based on page content</small></h2>
+				</div>
+			</div>
+		</div>
+
+		<div class="row" id="fakeLinkPanel" style="display: none">
+			<div class="col-sm-7">
+        <br>
+				<div class="review-block">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="review-block-title"><a id="fakeLink" href="" target="_blank"></a> </div>
+            </div>
+          </div>
+				</div>
+			</div>
+		</div>
+
+    </div> <!-- /container -->
+
+
+  </body>
+</html>

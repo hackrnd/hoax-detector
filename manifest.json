@@ -1,0 +1,26 @@
+{
+   "background": {
+      "scripts": [ "background.js" ]
+   },
+   "content_scripts": [ {
+      "js": [ "content.js" ],
+      "matches": [ "<all_urls>" ]
+   } ],
+   "description": "Detects hoax and fake news based on the content of web page.",
+   "icons": {
+      "128": "img/128.png",
+      "16": "img/16.png",
+      "48": "img/48.png"
+   },
+   "manifest_version": 2,
+   "name": "Hoax Detector",
+   "options_page": "options.html",
+   "page_action": {
+      "default_icon": "img/16.png",
+      "default_popup": "popup.html",
+      "default_title": "Analyzing page content for hoax"
+   },
+   "permissions": [ "tabs", "notifications", "storage" ],
+   "version": "0.1",
+   "web_accessible_resources": [ "img/good.png" ]
+}

@@ -1,0 +1,33 @@
+body {
+  padding-top: 70px;
+  min-width: 400px; /* your desired width */
+  max-width: 100%;
+  position: relative;
+  vertical-align:middle;
+
+}
+.rating-block{
+	background-color:#FAFAFA;
+	border:1px solid #EFEFEF;
+	padding:15px 15px 20px 15px;
+	border-radius:3px;
+}
+.bold{
+	font-weight:700;
+}
+
+.review-block{
+	background-color:#FAFAFA;
+	border:1px solid #EFEFEF;
+	padding:15px;
+	border-radius:3px;
+	margin-bottom:15px;
+}
+.review-block-title{
+	font-size:15px;
+	font-weight:700;
+	margin-bottom:5px;
+}
+.review-block-description{
+	font-size:13px;
+}
