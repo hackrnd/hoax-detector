@@ -3,12 +3,15 @@
     {currentWindow: true, active : true},
     function(tabArray){
       url = tabArray[0].url.split("#")[0];
+      tabId = tabArray[0].id;
       if (localStorage.autoDetect === "true"){       
         get(url);
       }else{
-        chrome.tabs.sendMessage(tabArray[0].id, "start", function() {
+        chrome.tabs.sendMessage(tabId, "start", function() {
           get(url);
         });
+        chrome.pageAction.setTitle({ title: "Analyzing page content...", tabId: tabId });
+        chrome.pageAction.hide(tabId);  
       }     
     }
   );
